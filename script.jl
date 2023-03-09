@@ -2786,7 +2786,7 @@ feuille = """\$(document).ready(function(){\n    \$(".btn").click(function(){\n 
 write(styles, feuille)
 close(styles)
 styles = open("info","a")
-write(styles, "\nnom du service\ntitre d'accueil\nmail\nwhatsapp\ntelegram\nmessenger\nnom du vendeur")
+write(styles, "\nnom du service\ntitre d'accueil\nmail\nwhatsapp\ntelegram\nmessenger\nnom du vendeur\nplaylink\napplink")
 close(styles)
 
 readyScripte = "les scripts js et les styles css sont aussi prêts !\n"

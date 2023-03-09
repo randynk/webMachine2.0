@@ -253,6 +253,8 @@ feuille = """
 		text-align: center;
 	}
 	.contacts{
+		border-radius: 15%;
+		border-radius: 15%;
 		height: 39px;
 		margin-left: 13.5%;
 		margin-right: 4.5%;
@@ -599,6 +601,7 @@ feuille = """
 		text-align: center;
 	}
 	.contacts{
+		border-radius: 15%;
 		height: 36px;
 		margin-left: 6.5%;
 		margin-right: 2.5%;
@@ -899,6 +902,7 @@ feuille = """
 		text-align: center;
 	}
 	.contacts{
+		border-radius: 15%;
 		width: 11%;
 		margin-left: 11%;
 		margin-right: 11%;
@@ -1273,6 +1277,7 @@ feuille = """.rubriques{
 		text-align: center;
 	}
 	.contacts{
+		border-radius: 15%;
 		height: 39px;
 		margin-left: 13.5%;
 		margin-right: 4.5%;
@@ -1657,6 +1662,7 @@ feuille = """.rubriques{
 		text-align: center;
 	}
 	.contacts{
+		border-radius: 15%;
 		height: 36px;
 		margin-left: 6.5%;
 		margin-right: 2.5%;
@@ -2000,6 +2006,7 @@ feuille = """.rubriques{
 		text-align: center;
 	}
 	.contacts{
+		border-radius: 15%;
 		height: 36px;
 		margin-left: 6.5%;
 		margin-right: 2.5%;
@@ -2300,6 +2307,7 @@ feuille = """.rubriques{
 		text-align: center;
 	}
 	.contacts{
+		border-radius: 15%;
 		width: 11%;
 		margin-left: 11%;
 		margin-right: 11%;

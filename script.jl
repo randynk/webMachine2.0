@@ -1,11 +1,10 @@
 styles = open("go.css","a")
-feuille = """
-@media (min-width: 900px) {
+feuille = """@media (min-width: 900px) {
 	.boutonhaut{
 		background-color: transparent;
 		position: fixed;
 		max-width: 30px;
-		top: 12%;
+		top: 10%;
 		left: 1%;
 		right: 0;
 	}
@@ -19,7 +18,7 @@ feuille = """
 		border: solid 2px transparent;
 		position: fixed;
 		max-width: 30px;
-		bottom: 12%;
+		bottom: 10%;
 		left: 1%;
 		right: 0;
 	}
@@ -253,8 +252,6 @@ feuille = """
 		text-align: center;
 	}
 	.contacts{
-		border-radius: 15%;
-		border-radius: 15%;
 		height: 39px;
 		margin-left: 13.5%;
 		margin-right: 4.5%;
@@ -371,7 +368,7 @@ feuille = """
 		border: solid 2px transparent;
 		position: fixed;
 		max-width: 30px;
-		bottom: 15%;
+		bottom: 10%;
 		left: 1%;
 		right: 0;
 	}
@@ -399,7 +396,6 @@ feuille = """
 		border: solid 2px #c4e6f8;
 		backdrop-filter: blur(24px);
 		background-color: #edf9ff;
-		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
@@ -419,7 +415,6 @@ feuille = """
 		width: 100%;
 	}
 	body{
-		margin-top: 15%;
 		background: linear-gradient(#edf9ff, #edf9ff, #edf9ff, #c9edff, #c0e4f6, #c3e0ef, #cae7f6, #edf9ff, #edf9ff, #edf9ff, #edf9ff);
 	}
 	b{
@@ -601,7 +596,6 @@ feuille = """
 		text-align: center;
 	}
 	.contacts{
-		border-radius: 15%;
 		height: 36px;
 		margin-left: 6.5%;
 		margin-right: 2.5%;
@@ -661,7 +655,7 @@ feuille = """
 		background-color: transparent;
 		position: fixed;
 		max-width: 30px;
-		top: 7%;
+		top: 10%;
 		left: 1%;
 		right: 0;
 	}
@@ -902,7 +896,6 @@ feuille = """
 		text-align: center;
 	}
 	.contacts{
-		border-radius: 15%;
 		width: 11%;
 		margin-left: 11%;
 		margin-right: 11%;
@@ -959,8 +952,7 @@ feuille = """
 	.centres{
 		margin-left: 30%;
 	}
-}
-"""
+}"""
 write(styles, feuille)
 close(styles)
 
@@ -1430,7 +1422,7 @@ feuille = """.rubriques{
 		border: solid 2px transparent;
 		position: fixed;
 		max-width: 30px;
-		bottom: 15%;
+		bottom: 12%;
 		left: 1%;
 		right: 0;
 	}
@@ -1459,7 +1451,6 @@ feuille = """.rubriques{
 		border: 1px #c4e6f8;
 		backdrop-filter: blur(24px);
 		background-color: #edf9ff;
-		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
@@ -2080,7 +2071,7 @@ feuille = """.rubriques{
 		border: solid 2px transparent;
 		position: fixed;
 		max-width: 30px;
-		bottom: 15%;
+		bottom: 12%;
 		left: 1%;
 		right: 0;
 	}
@@ -2574,10 +2565,9 @@ feuille = """@media (min-width: 900px){
 	height: 0;
 	position: relative;
 }
-
 .inputs{
 	position: absolute;
-	right: 0;
+	left: 0;
 	top: 0;
 	box-sizing: border-box;
 	width: 0px;
@@ -2608,7 +2598,7 @@ feuille = """@media (min-width: 900px){
 	width: 0;
 	height: 0;
 	border-radius: 0;
-	right: 0;
+	left: 0;
 	top: 0;
 	cursor: pointer;
 	text-align: center;
@@ -2634,25 +2624,20 @@ feuille = """@media (min-width: 900px){
 }	
 }
 
-@media (min-width: 700px) and (max-width: 900px){
-	body{
-		margin-top: 70px;
-	}
+@media (max-width: 900px){
+
 .wrapper{
 	background-color: transparent;
 	position: fixed;
-	max-width: 30px;
 	top: 15%;
-	left: 1%;
-	right: 0;
+	right: 1%;
+	margin: 1px;
+	display: block;
 }
-
 .search-box{
-	width: 50px;
 	height: 450px;
 	position: relative;
 }
-
 .inputs{
 	position: absolute;
 	right: 0;
@@ -2686,7 +2671,7 @@ feuille = """@media (min-width: 900px){
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	right: 10px;
+	right: 0;
 	top: 45px;
 	cursor: pointer;
 	text-align: center;
@@ -2695,90 +2680,12 @@ feuille = """@media (min-width: 900px){
 	color: skyblue;
 	transition: all 0.8 ease;
 }
-
 .inputs.active{
 	width: 50px;
 	height: 300px;
 	border: 2px solid transparent;
 	background: transparent;
 }
-
-.click{
-	height: 50px;
-	border-radius: 30px;
-}
-.clicks{
-	width: 800%;
-}
-}
-
-@media (max-width: 700px){
-
-.wrapper{
-	background-color: transparent;
-	position: fixed;
-	max-width: 30px;
-	top: 12%;
-	left: 1%;
-	right: 0;
-}
-
-.search-box{
-	width: 50px;
-	height: 450px;
-	position: relative;
-}
-
-.inputs{
-	position: absolute;
-	right: 0;
-	top: 50px;
-	box-sizing: border-box;
-	width: 0px;
-	height: 0px;
-	border: 0px solid #edf9ff;
-	border-radius: 50px;
-	padding: 0 21px;
-	outline: none;
-	font-size: 18px;
-	color: skyblue;
-	transition: all 0.8s ease;
-}
-
-::-webkit-input-placeholder{
-	color: #edf9ff;
-}
-
-::-moz-input-placeholder{
-	color: #edf9ff;
-}
-
-:-ms-input-placeholder{
-	color: #edf9ff;
-}
-
-.btn{
-	position: absolute;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	right: 10px;
-	top: 45px;
-	cursor: pointer;
-	text-align: center;
-	line-height: 80px;
-	font-size: 20px;
-	color: skyblue;
-	transition: all 0.8 ease;
-}
-
-.inputs.active{
-	width: 50px;
-	height: 300px;
-	border: 2px solid transparent;
-	background: transparent;
-}
-
 .click{
 	height: 50px;
 	border-radius: 30px;
@@ -2791,6 +2698,67 @@ write(styles, feuille)
 close(styles)
 styles = open("contacts.js","a")
 feuille = """\$(document).ready(function(){\n    \$(".btn").click(function(){\n        \$(".inputs").toggleClass("active");\n    });\n});"""
+write(styles, feuille)
+close(styles)
+styles = open("menu.css","a")
+feuille = """@media (min-width: 900px){
+	.clique{
+		height: 0;
+		width: 0;
+	}
+	#ch{
+		display: none;
+	}
+	#lab{
+		position: fixed;
+		width: 0;
+		height: 0;
+		background-color: transparent;
+		display: none;
+	}
+}
+@media (max-width: 900px){
+	nav{
+		display: block;
+	}
+	.clique{
+		height: 50px;
+		width: auto;
+		border-radius: 30px;
+	}
+	#ch{
+		display: none;
+	}
+	#lab{
+		bottom: 30%;
+		left: 1%;
+		position: fixed;
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		background-color: transparent;
+		margin: 1px;
+		display: block;
+	}
+	@media all and (max-width: 900px){
+		nav{
+			display: block;
+			position: absolute;
+			outline: none;
+			left: 0;
+			right: 0;
+			transform: translate(-1000px,0);
+			transition: all 0.5s ease;
+		}
+		#ch:checked+nav{
+			transform: translate(0,0);
+			transition: all 0.5s ease;
+		}
+		#lab{
+			display: block;
+		}
+	}
+}"""
 write(styles, feuille)
 close(styles)
 styles = open("info","a")

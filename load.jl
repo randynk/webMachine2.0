@@ -1,3 +1,17 @@
+function chat(message, temps::Float64)
+    texte = open("file","w")
+    write(texte, message)
+    write(texte, "\n")
+    close(texte)
+    texte = open("file","r")
+    while !eof(texte)
+        lettre = read(texte, Char)
+        print(lettre)
+        sleep(temps)
+    end
+    close(texte)
+    rm("file")
+end
 rubrique = []
 nbre_sous_rubrique = Int64[]
 sous_rubrique = []
@@ -114,14 +128,28 @@ vendeur = info[8]
 playlink = info[9]
 applink = info[10]
 statutVendeur = info[11]
+bashLocation = info[12]
+system = info[13]
 viaashop = "viaa.me"
 shoplog = "viaalog.png"
 if statutVendeur == "free"
-    global viaashop = string(viaashop, "/vshop.html#")
+    global viaashop = string(viaashop, "/shopping.html#")
     global shoplog = "vshoplog.png"
 end
+write("go.cmd", """@echo off\nset URL=https://$viaashop\nstart "" "%URL%"\nset URL=mailto:advertisingsomega@gmail.com\nstart "" "%URL%"\n""")
+go = string(pwd(), "\\go.cmd")
+commande = `$go`
+go = "go.cmd"
+if  system == "linux"
+    rm("go.cmd")
+    write("go.sh", """#! bin/bash\nURL="https://$viaashop"\nxdg-open "\$URL"\nURL="mailto:advertisingsmega@gmail.com"\nxdg-open "\$URL" """)
+    global commande = `bash go.sh`
+    global go = "go.sh"
+else
+    chat("Erreur lors de la spécification du système d'exploitation\ndans les fichiers de renseignement. Vérifiez que\nvous avez bien entré 'windows' ou 'linux dans le fichier info'", 0.012)
+end
 pages = open("index.html","a")
-head = """\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset="utf-8">\n    <title>$service #Powered by V.I.A.A</title>\n    <link rel="stylesheet" type="text/css" href="design.css">\n    <link rel="stylesheet" type="text/css" href="designed.css">\n    <meta name="viewport" content="width=device-width, initial-scale=1">\n    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" type="text/css" href="contacts.css">\n	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> \n	<script src="contacts.js"></script>\n    <link rel="stylesheet" type="text/css" href="menu.css">\n<link rel="icon" href="vendeur.png">\n</head>\n<body>\n<header class="fix">\n    <table>\n        <tr>\n            <td><img class="log" src="vendeur.png"></td>\n            <td><div class="help">\n    				<div class="researchs">\n    				    <i class="fa fa-search" aria-hidden="true"></i>\n    				</div>\n    				<div class="entree">\n    				    <label id="search">Tapez votre recherche ici</label><br>\n    				    <input type="text" class="input"></input>\n    				</div>\n				</div>\n            </td>\n            <td class="hea"><div>\n"""
+head = """\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset="utf-8">\n    <title>$service || the V.I.A.A's Market Hub</title>\n    <link rel="stylesheet" type="text/css" href="design.css">\n    <link rel="stylesheet" type="text/css" href="designed.css">\n    <meta name="viewport" content="width=device-width, initial-scale=1">\n    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" type="text/css" href="contacts.css">\n	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> \n	<script src="contacts.js"></script>\n    <link rel="stylesheet" type="text/css" href="menu.css">\n<link rel="icon" href="vendeur.png">\n</head>\n<body>\n<header class="fix">\n    <table>\n        <tr>\n            <td><img class="log" src="vendeur.png"></td>\n            <td><div class="help">\n    				<div class="researchs">\n    				    <i class="fa fa-search" aria-hidden="true"></i>\n    				</div>\n    				<div class="entree">\n    				    <label id="search">Tapez votre recherche ici</label><br>\n    				    <input type="text" class="input"></input>\n    				</div>\n				</div>\n            </td>\n            <td class="hea"><div>\n"""
 for i in 1:nbre_rub
     global  head = string(head, """\n<button class="rubrique"><a href="index.html#rub-$i">$(rubrique[i])</a></button>\n""")
 end
@@ -171,7 +199,7 @@ for i in 1:nbre_rub
     global point = 1
     global somme += nbre_sous_rubrique[i]
 end
-foot = """<span id="basdepage"></span>\n<footer class="fixe full">\n   \n    <div id="liens">\n        <button class="rubrics">\n            <a href="mailto:$email"><img class="contact" src="vmail.png"></a>\n            <a href="https://wa.me/+237$whatsapp/"><img class="contact" src="whtsp.png"></a>\n            <a href="https://t.me/+237$telegram/"><img class="contact" src="vtlgrm.png"></a>\n            <a href="https://m.me/+237$messenger/"><img class="contact" src="vmsg.png"></a>\n        </button>\n        <button class="rubricss">\n            <img class="contacts" src="viaa.png">\n            <img class="contacts" src="vendeur.png">\n            <a href="https://$viaashop/"><img class="contacts" src="$shoplog"></a>\n        </button>\n        <button class="rubricsss">\n            <a href="$playlink"><img class="apps" src="vplay.png"></a>\n            <a href="$applink"><img class="apps" src="vapp.png"></a>\n        </button>\n    </div>\n</footer>  \n\n    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n    <script src="search.js"></script>                \n</body>\n</html>"""
+foot = """<span id="basdepage"></span>\n<footer class="fixe full">\n   \n    <div id="liens">\n        <button class="rubrics">\n            <a href="mailto:$email"><img class="contact" src="vmail.png"></a>\n            <a href="https://wa.me/+237$whatsapp/"><img class="contact" src="whtsp.png"></a>\n            <a href="https://t.me/+237$telegram/"><img class="contact" src="vtlgrm.png"></a>\n            <a href="https://m.me/+237$messenger/"><img class="contact" src="vmsg.png"></a>\n        </button>\n        <button class="rubricss">\n            <img class="contacts" src="viaa.png">\n            <img class="contacts" src="vendeur.png">\n            <a href="https://$viaashop/"><img class="contacts" src="$shoplog"></a>\n        </button>\n        <button class="rubricsss">\n            <a href="$playlink"><img class="apps" src="vplay.png"></a>\n        </button>\n    </div>\n</footer>  \n\n    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n    <script src="search.js"></script>                \n</body>\n</html>"""
 write(pages, "$foot\n")
 close(pages)
 
@@ -186,3 +214,7 @@ rm("readyScript")
 rm("edite")
 rm("ready")
 rm("messages")
+chat("Le site web est prêt !\n Envoyez-nous le dossier webSite par mail\n  à l'adresse : advertisingsomega@gmail.com\n  Vous allez bientôt rejoindre la famille Vshop", 0.015)
+chat("\nPrenez un aperçu des e-shops des vendeurs qui bénéficient déjà de ce service sur notre plateforme", 0.015)
+run(commande)
+rm(go)

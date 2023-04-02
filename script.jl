@@ -2762,7 +2762,7 @@ feuille = """@media (min-width: 900px){
 write(styles, feuille)
 close(styles)
 styles = open("info","a")
-write(styles, "\nnom du service\ntitre d'accueil\nmail\nwhatsapp\ntelegram\nmessenger\nnom du vendeur\nplaylink\napplink")
+write(styles, "\nnom du service\ntitre d'accueil\nmail\nwhatsapp\ntelegram\nmessenger\nnom du vendeur\nviaa.apk\napplink\nfree\n#! usr/bin/bash\nwindows")
 close(styles)
 
 readyScripte = "les scripts js et les styles css sont aussi prêts !\n"

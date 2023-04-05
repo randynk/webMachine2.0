@@ -85,7 +85,7 @@ while !eof(fichier)
 end
 close(fichier)
 editee = "Veuillez éditer les fichiers de renseignement des informations sur le service, les rubriques, des noms, prix et précisions sur les produits\n"
-readye = "Parfait ! Tout est prêt ! Assurez maintenant que toutes vos images sont dans le même dossier que le fichier html qui a été généré !\n"
+readye = "Parfait ! Tout est prêt ! Assurez - vous maintenant que toutes vos images sont dans le même dossier que le fichier html qui a été généré !\n"
 edites = open("edite","a")
 write(edites, editee)
 close(edites)
@@ -107,7 +107,6 @@ for i in 1:nbre_rub
         articles = open("art-$i-$j","r")
         article = readlines(articles)
         close(articles)
-
         for k in article
             begin
                 c = split(k, ",")
@@ -136,17 +135,15 @@ if statutVendeur == "free"
     global viaashop = string(viaashop, "/shopping.html#")
     global shoplog = "vshoplog.png"
 end
-write("go.cmd", """@echo off\nset URL=https://$viaashop\nstart "" "%URL%"\nset URL=mailto:advertisingsomega@gmail.com\nstart "" "%URL%"\n""")
+write("go.cmd", """@echo off\nset URL=https://$viaashop\nstart "" "%URL%"\n""")
 go = string(pwd(), "\\go.cmd")
 commande = `$go`
 go = "go.cmd"
 if  system == "linux"
     rm("go.cmd")
-    write("go.sh", """#! bin/bash\nURL="https://$viaashop"\nxdg-open "\$URL"\nURL="mailto:advertisingsmega@gmail.com"\nxdg-open "\$URL" """)
+    write("go.sh", """#! $bashLocation\nURL="https://$viaashop"\nxdg-open "\$URL"\n""")
     global commande = `bash go.sh`
     global go = "go.sh"
-else
-    chat("Erreur lors de la spécification du système d'exploitation\ndans les fichiers de renseignement. Vérifiez que\nvous avez bien entré 'windows' ou 'linux dans le fichier info'", 0.012)
 end
 pages = open("index.html","a")
 head = """\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset="utf-8">\n    <title>$service || the V.I.A.A's Market Hub</title>\n    <link rel="stylesheet" type="text/css" href="design.css">\n    <link rel="stylesheet" type="text/css" href="designed.css">\n    <meta name="viewport" content="width=device-width, initial-scale=1">\n    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">\n    <link rel="stylesheet" type="text/css" href="contacts.css">\n	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> \n	<script src="contacts.js"></script>\n    <link rel="stylesheet" type="text/css" href="menu.css">\n<link rel="icon" href="vendeur.png">\n</head>\n<body>\n<header class="fix">\n    <table>\n        <tr>\n            <td><img class="log" src="vendeur.png"></td>\n            <td><div class="help">\n    				<div class="researchs">\n    				    <i class="fa fa-search" aria-hidden="true"></i>\n    				</div>\n    				<div class="entree">\n    				    <label id="search">Tapez votre recherche ici</label><br>\n    				    <input type="text" class="input"></input>\n    				</div>\n				</div>\n            </td>\n            <td class="hea"><div>\n"""
@@ -214,7 +211,5 @@ rm("readyScript")
 rm("edite")
 rm("ready")
 rm("messages")
-chat("Le site web est prêt !\n Envoyez-nous le dossier webSite par mail\n  à l'adresse : advertisingsomega@gmail.com\n  Vous allez bientôt rejoindre la famille Vshop", 0.015)
-chat("\nPrenez un aperçu des e-shops des vendeurs qui bénéficient déjà de ce service sur notre plateforme", 0.015)
 run(commande)
 rm(go)

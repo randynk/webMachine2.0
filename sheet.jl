@@ -139,7 +139,7 @@ function itineraire(hote::String, t::Integer = 0)
 end
 function Randy_same_packs()
     nombre = 0
-    packs = ["Juno"; "Knet"; "TextParse"; "HTTP"; "Publish"; "MAT"; "MLDatasets"; "SpecialFunctions"; "HDF5"; "DSP"; "PDFIO"; "Polynomials"; "ExcelReaders"; "Distributions"; "Gadfly"; "Nullables"; "MemPool"; "FileIO"; "SymPy"; "PooledArrays"; "Taro"; "RData"; "ScikitLearn"; "IndexedTables"; "Glob"; "VideoIO"; "PlotThemes"; "RecipesBase"; "Combinatorics"; "CSV"; "TimeZones"; "PyCall"; "BinaryProvider"; "Genie"; "JSON"; "GenericLinearAlgebra"; "CSVFiles"; "StatsBase"; "PolynomialRoots"; "Atom"; "IJulia"; "Roots"; "BenchmarkTools"; "Flux"; "InverseFunctions"; "StatsPlots"; "Plots"; "Tables"; "Conda"; "Pluto"; "OnlineStatsBase"; "WeakRefStrings"; "DifferentialEquations"; "Hecke"; "UpdateJulia"; "OnlineStats"; "DataValues"; "Dagger"; "EcoSISTEM"]
+    packs = ["LaTeXStrings";"Juno"; "Knet"; "TextParse"; "HTTP"; "Publish"; "MAT"; "MLDatasets"; "SpecialFunctions"; "HDF5"; "DSP"; "PDFIO"; "Polynomials"; "ExcelReaders"; "Distributions"; "Gadfly"; "Nullables"; "MemPool"; "FileIO"; "SymPy"; "PooledArrays"; "Taro"; "RData"; "ScikitLearn"; "IndexedTables"; "Glob"; "VideoIO"; "PlotThemes"; "RecipesBase"; "Combinatorics"; "CSV"; "TimeZones"; "PyCall"; "BinaryProvider"; "Genie"; "JSON"; "GenericLinearAlgebra"; "CSVFiles"; "StatsBase"; "PolynomialRoots"; "Atom"; "IJulia"; "Roots"; "BenchmarkTools"; "Flux"; "InverseFunctions"; "StatsPlots"; "Plots"; "Tables"; "Conda"; "Pluto"; "OnlineStatsBase"; "WeakRefStrings"; "DifferentialEquations"; "Hecke"; "UpdateJulia"; "OnlineStats"; "DataValues"; "Dagger"; "EcoSISTEM"]
     for pack in packs
         try
             Pkg.update(pack)

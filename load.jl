@@ -1,17 +1,4 @@
-function chat(message, temps::Float64)
-    texte = open("file","w")
-    write(texte, message)
-    write(texte, "\n")
-    close(texte)
-    texte = open("file","r")
-    while !eof(texte)
-        lettre = read(texte, Char)
-        print(lettre)
-        sleep(temps)
-    end
-    close(texte)
-    rm("file")
-end
+include("sheet.jl")
 rubrique = []
 nbre_sous_rubrique = Int64[]
 sous_rubrique = []
@@ -99,9 +86,7 @@ while !eof(fichiers)
     sleep(0.015)
 end
 close(fichiers)
-while uppercase(readline()) != "C"
-    println("Tapez la touche c puis valider sur ENTRER pour continuer s'il vous plaît\n")        
-end
+bip("c")
 for i in 1:nbre_rub
     for j in 1:nbre_sous_rubrique[i]
         articles = open("art-$i-$j","r")

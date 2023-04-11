@@ -1,3 +1,4 @@
+include("sheet.jl")
 styles = open("go.css","a")
 feuille = """@media (min-width: 900px) {
 	.boutonhaut{
@@ -2776,6 +2777,4 @@ fichiers = open("readyScript","r")
         sleep(0.015)
     end
 close(fichiers)
-while uppercase(readline()) != "C"
-	println("Tapez la touche c puis valider sur ENTRER pour continuer s'il vous plaît\n")        
-end
+bip("c")

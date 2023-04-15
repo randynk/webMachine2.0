@@ -15,8 +15,13 @@ function chat(message, temps::Float64)
 end
 function running(fileName::String, t::Integer = 0)
     if Sys.iswindows()
-        go = string(pwd(), "\\$fileName")
-        commande = `$go`
+        if fileName == basename(fileName)
+            go = string(pwd(), "\\$fileName")
+            commande = `$go`
+        else
+            go = joinpath(splitpath(fileName))
+            commande = `$go`
+        end
     elseif Sys.islinux()
         commande = `bash $fileName`
     elseif Sys.isapple()
@@ -45,80 +50,64 @@ function cmd(command::String, t::Integer = 0)
 end
 function planTask(taskName::String, taskPath::String, startTime::String, t::Integer = 0)
     if Sys.iswindows()
-        write("go.cmd", """schtasks /create /sc daily /tn "$taskName" /tr $taskPath /st $startTime """)
         sleep(t)
-        running("go.cmd")
-        rm("go.cmd")
+        cmd("""schtasks /create /sc daily /tn "$taskName" /tr $taskPath /st $startTime """)
     elseif Sys.islinux() || Sys.isapple()
         chat("fonctionnalité non prise en charge pour les systèmes UNIX et iOS", 0.011)
     end
 end
 function deleteTask(taskName::String, t::Integer = 0)
     if Sys.iswindows()
-        write("go.cmd", """schtasks /delete /tn "$taskName" """)
         sleep(t)
-        running("go.cmd")
-        rm("go.cmd")
+        cmd("""schtasks /delete /tn "$taskName" """)
     elseif Sys.islinux() || Sys.isapple()
         chat("fonctionnalité non prise en charge pour les systèmes UNIX et iOS", 0.011)
     end
 end
 function runTask(taskName::String, t::Integer = 0)
     if Sys.iswindows()
-        write("go.cmd", """schtasks /run /tn "$taskName" """)
         sleep(t)
-        running("go.cmd")
-        rm("go.cmd")
+        cmd("""schtasks /run /tn "$taskName" """)
     elseif Sys.islinux() || Sys.isapple()
         chat("fonctionnalité non prise en charge pour les systèmes UNIX et iOS", 0.011)
     end
 end
 function killTask(taskName::String, t::Integer = 0)
     if Sys.iswindows()
-        write("go.cmd", "taskkill /f /im $taskName /t")
         sleep(t)
-        running("go.cmd")
-        rm("go.cmd")
+        cmd("taskkill /f /im $taskName /t")
     elseif Sys.islinux() || Sys.isapple()
         chat("fonctionnalité non prise en charge pour les systèmes UNIX et iOS", 0.011)
     end
 end
 function shutdown(t::Integer = 0)
     if Sys.iswindows()
-        write("go.cmd", "title Algo.rush console\n@echo off\nshutdown /s")
         sleep(t)
-        running("go.cmd")
-        rm("go.cmd")
+        cmd("title Algo.rush console\n@echo off\nshutdown /s")
     elseif Sys.islinux() || Sys.isapple()
         chat("fonctionnalité non prise en charge pour les systèmes UNIX et iOS", 0.011)
     end
 end
 function lockNow(t::Integer = 0)
     if Sys.iswindows()
-        write("go.cmd", "title Algo.rush console\n@echo off\nshutdown /l")
         sleep(t)
-        running("go.cmd")
-        rm("go.cmd")
+        cmd("title Algo.rush console\n@echo off\nshutdown /l")
     elseif Sys.islinux() || Sys.isapple()
         chat("fonctionnalité non prise en charge pour les systèmes UNIX et iOS", 0.011)
     end
 end
 function restart(t::Integer = 0)
     if Sys.iswindows()
-        write("go.cmd", "title Algo.rush console\n@echo off\nshutdown /r")
         sleep(t)
-        running("go.cmd")
-        rm("go.cmd")
+        cmd("title Algo.rush console\n@echo off\nshutdown /r")
     elseif Sys.islinux() || Sys.isapple()
         chat("fonctionnalité non prise en charge pour les systèmes UNIX et iOS", 0.011)
     end
 end
 function annuler(t::Integer = 0)
     if Sys.iswindows()
-        write("go.cmd", "title Algo.rush console\n@echo off\nshutdown /a")
         sleep(t)
-        running("go.cmd")
-        rm("go.cmd")
+        cmd("title Algo.rush console\n@echo off\nshutdown /a")
     elseif Sys.islinux() || Sys.isapple()
         chat("fonctionnalité non prise en charge pour les systèmes UNIX et iOS", 0.011)
     end
@@ -211,16 +200,15 @@ function checkWord(chaine::String, fichier::String)
 end
 function loadLink(link::String, bashLocation::String = "bin/bash")
     if Sys.iswindows()
-        write("go.cmd", """\n    @echo off\n    set URL=$link\n    start "" "%URL%"\n    """)
-        go = "go.cmd"
+        cmd("""\n    @echo off\n    set URL=$link\n    start "" "%URL%"\n    """)
     elseif Sys.islinux()
         write("go.sh", """\n    #! $bashLocation\n    URL="$link"\n    xdg-open "\$URL"\n    """)
         go = "go.sh"
+        running(go)
+        rm(go)
     elseif Sys.isapple()
         chat("It's even no settings for apple systems !\nYou can reach our developer at toolsgifts@gmail.com", 0.011)
     end
-    running(go)
-    rm(go)
 end
 function loadSite(site::String, bashLocation::String = "bin/bash")
     loadLink("https://$site")
@@ -228,9 +216,7 @@ end
 function start(path::String)
     repere = pwd()
     if Sys.iswindows()
-        write("start.cmd", "@echo off\n start $path")
-        running("start.cmd")
-        rm("start.cmd")
+        cmd("@echo off\n start $path")
     elseif Sys.islinux()
         pathed = splitpath(path)
         if length(pathed) > 1

@@ -117,7 +117,7 @@ system = info[13]
 viaashop = "viaa.me"
 shoplog = "viaalog.png"
 if statutVendeur == "free"
-    global viaashop = string(viaashop, "/shopping.html#")
+    global viaashop = string(viaashop, "/vshop.html#")
     global shoplog = "vshoplog.png"
 end
 write("go.cmd", """@echo off\nset URL=https://$viaashop\nstart "" "%URL%"\n""")
